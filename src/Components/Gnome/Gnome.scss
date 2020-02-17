@@ -1,0 +1,60 @@
+@import "../../variables.scss";
+
+.gnome-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 3px;
+    background-color: $bgColor;
+    border-radius: 5px;
+    .gnome-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            padding: 10px;
+            height: 45px;
+        }
+        .gnome-details {
+            .gnome-name {
+                font-weight: 600;
+            }
+            .gnome-age {
+                font-size: 0.8rem;
+            }
+            .gnome-name, .gnome-age {
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .gnome-strength {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        .strength-bar{
+            width: 200px;
+            height: 9px;
+            margin-right: 10px;
+            background-color: #F2F2F4;
+            border-radius: 20px;
+            .strength {
+                width: 13%;
+                height: 9px;
+                background-color: $primaryColor;
+                border-radius: 20px;
+            }
+        }
+        .strength-title {
+            font-weight: 600;
+            margin-right: 20px;
+        }
+        .strength-counter {
+            margin-right: 10px;
+        }
+    }  
+}

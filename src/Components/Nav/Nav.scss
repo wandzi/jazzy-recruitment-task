@@ -6,7 +6,8 @@
     align-items: center;
     height: 100%;
     padding: 10px 0px;
-    background-color: $navBgColor;
+    background-color: $bgColor;
+    border-bottom: 2px solid $navShadow;
 }
 
 .tabs {
