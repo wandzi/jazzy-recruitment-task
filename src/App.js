@@ -1,11 +1,15 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+import Nav from './Components/Nav/Nav';
+import Table from './Components/Table/Table';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div>
+      <Nav />
+      <Table />
     </div>
+    
   );
 }
 

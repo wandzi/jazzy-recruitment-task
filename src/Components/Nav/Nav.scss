@@ -1,0 +1,74 @@
+@import "../../variables.scss";
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    padding: 10px 0px;
+    background-color: $navBgColor;
+}
+
+.tabs {
+    display: flex;
+    width: 30%;
+    a {
+        text-decoration: none;
+        color: $fontColor;
+        font-weight: 600;
+    }
+    a:last-child {
+        margin-left: 70px;
+    }
+}
+
+
+.create-monster-btn {
+    height: 35px;
+    padding: 0px 15px;
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: $primaryColor;
+    color: #FFFFFF;
+    font-weight: 900;
+    font-family: 'Work Sans', sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    cursor: pointer;
+    .user-thumbnail {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .user-info {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        color: $fontColor;
+        height: 40px;
+        margin-left: 7px;
+        .user-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+            font-size: 0.9rem;
+        }
+        .user-role {
+            font-size: 0.8rem;
+        }
+        .user-name, .user-role {
+            p {
+                margin: 0;
+            }
+            height: 15px;
+        }
+
+    }
+}
