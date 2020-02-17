@@ -16,7 +16,7 @@ class Table extends Component {
             const gnomesList = res.data;
             this.setState({ gnomesList });
         })
-        .catch( error => {
+        .catch((error) => {
             console.log(error);
         })
     }
@@ -30,7 +30,7 @@ class Table extends Component {
                     <h1>Gnomes</h1>
                     {
                         gnomesList.map( item => {
-                            return <Gnome key={item.id} name={item.name} age={item.age} strength={item.strenght}/>
+                            return <Gnome key={item.id} gnome={item} />
                         }) 
                     }
                 </div>
