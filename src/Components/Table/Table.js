@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import './Table.scss';
 import axios from 'axios';
 import Gnome from '../Gnome/Gnome';
+import Modal from '../Modal/Modal';
 
 class Table extends Component {
     constructor() {
         super();
         this.state = {
-            gnomesList: []
+            gnomesList: [],
+            isOpen: false,
         }
     }
     componentDidMount() {
@@ -20,20 +22,27 @@ class Table extends Component {
             console.log(error);
         })
     }
+
+    toggleModal = () => {
+        this.setState({
+          isOpen: !this.state.isOpen
+        });
+      }
+
     render() {
-        const gnomesList = this.state.gnomesList;
-        console.log(gnomesList);
+        const { gnomesList } = this.state;
 
         return(
             <div className="container">
                 <div className="table-container">
                     <h1>Gnomes</h1>
                     {
-                        gnomesList.map( item => {
-                            return <Gnome key={item.id} gnome={item} />
+                        gnomesList.map( gnome => {
+                            return <Gnome key={gnome.id} gnome={gnome} clickEvent={this.toggleModal.bind(this)}/>
                         }) 
                     }
                 </div>
+                <Modal show={this.state.isOpen} onClose={this.toggleModal}/>
             </div>
         )
     }

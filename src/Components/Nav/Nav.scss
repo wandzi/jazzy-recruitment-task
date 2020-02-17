@@ -1,4 +1,5 @@
 @import "../../variables.scss";
+@import "../../mixins.scss";
 
 .nav {
     display: flex;
@@ -7,7 +8,7 @@
     height: 100%;
     padding: 10px 0px;
     background-color: $bgColor;
-    border-bottom: 2px solid $navShadow;
+    border-bottom: 1px solid $navShadow;
 }
 
 .tabs {
@@ -25,17 +26,7 @@
 
 
 .create-monster-btn {
-    height: 35px;
-    padding: 0px 15px;
-    margin: 0;
-    border: none;
-    border-radius: 5px;
-    background-color: $primaryColor;
-    color: #FFFFFF;
-    font-weight: 900;
-    font-family: 'Work Sans', sans-serif;
-    letter-spacing: 1px;
-    cursor: pointer;
+    @include app-btn;
 }
 
 .user {

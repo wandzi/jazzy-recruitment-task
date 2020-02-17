@@ -1,0 +1,13 @@
+@mixin app-btn {
+    height: 35px;
+    padding: 0px 15px;
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: $primaryColor;
+    color: #FFFFFF;
+    font-weight: 900;
+    font-family: 'Work Sans', sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
