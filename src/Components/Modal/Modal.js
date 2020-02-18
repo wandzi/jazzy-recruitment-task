@@ -22,11 +22,20 @@ class Modal extends Component {
             <div className="modal-body">
                 <a href="#" className="close-btn" onClick={this.props.onClose}></a>
                 <img src={GnomeAvatar} alt="gnome avatar"/>
-                <h1>Edit Gnome</h1>
+                <h1>Edit {this.props.gnomeName}</h1>
                 <form>
-                    <input type="text" name="name" id="name" placeholder="Name"/>
-                    <input type="text" name="age" id="age" placeholder="Age"/>
-                    <input type="text" name="strength" id="strength" placeholder="Strength"/>
+                    <div>
+                        <label htmlFor="name">Name</label>
+                        <input type="text" name="name" id="name" defaultValue={this.props.gnomeName}/>
+                    </div>
+                    <div>
+                        <label htmlFor="age">Age</label>
+                        <input type="text" name="age" id="age" defaultValue={this.props.gnomeAge}/>
+                    </div>
+                    <div>
+                        <label htmlFor="strength">Strength</label>
+                        <input type="text" name="strength" id="strength" defaultValue={this.props.gnomeStrength}/>
+                    </div>
                     <button type="submit" className="submit-btn">Submit</button>
                 </form>
             </div>
