@@ -10,8 +10,10 @@ class Table extends Component {
         this.state = {
             gnomesList: [],
             isOpen: false,
-            modalItemName: 'asd',
-            modalItemId: null,
+            modalItemName: '',
+            modalItemAge: '',
+            modalItemId: '',
+            modalItemStrength: '',
         }
         this.toggleModal = this.toggleModal.bind(this);
     }
@@ -29,6 +31,7 @@ class Table extends Component {
     toggleModal = (gnome) => {
         this.setState({
             isOpen: !this.state.isOpen,
+            modalItemId: gnome.id,
             modalItemName: gnome.name,
             modalItemAge: gnome.age,
             modalItemStrength: gnome.strenght,
@@ -50,6 +53,8 @@ class Table extends Component {
                 <Modal 
                     show={this.state.isOpen} 
                     onClose={this.toggleModal} 
+                    
+                    gnomeId={this.state.modalItemId} 
                     gnomeName={this.state.modalItemName}
                     gnomeAge={this.state.modalItemAge}
                     gnomeStrength={this.state.modalItemStrength}
