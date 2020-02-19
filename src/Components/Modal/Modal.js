@@ -27,7 +27,7 @@ class Modal extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        console.log(this.state.id);
+        
     
         const gnome = {
                 name: this.state.submitedName,
@@ -35,12 +35,12 @@ class Modal extends Component {
                 strenght: this.state.submitedStrength,
               }
 
+              console.log(gnome);
         axios.post(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes/${this.state.id}`, {gnome})
         .then( res => {
             console.log(res);
             console.log(res.data);
-        })
-
+        });
     }
     
     render() {

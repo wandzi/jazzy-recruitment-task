@@ -1,0 +1,29 @@
+@import "../../SCSS/variables.scss";
+@import "../../SCSS/mixins.scss";
+
+
+.pagination-nav {
+    width: initial;
+    margin: 80px auto;
+    background-color: $primaryColor;
+    border-radius: 20px;
+    .page-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        .page {
+            padding: 7px;
+            text-decoration: none;
+            color: $bgColor;
+            cursor: pointer;
+        }
+    }
+}
+
+.active {
+    font-size: 19px;
+    color: #FFFF00 !important; 
+}
