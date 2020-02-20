@@ -12,12 +12,6 @@ class Modal extends Component {
         this.props.onClose && this.props.onClose(event);
     }
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
-    }
-    
     render() {
         if(!this.props.show) {
             return null;
