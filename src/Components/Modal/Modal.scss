@@ -19,7 +19,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        height: 70vh;
+        height: 80vh;
         width: 50vw;
         position:relative;
         background-color: $bgColor;
@@ -51,33 +51,8 @@
             transform: rotate(-45deg);
           }
           h1 {
+            font-size: 1.7rem;
             margin-bottom: 50px;
-          }
-          form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            div {
-              display: flex;
-              flex-direction: column;
-              label {
-                margin-bottom: 3px;
-              }
-              input {
-                padding: 10px;
-                margin-bottom: 10px;
-                border-radius: 10px;
-                border: 1px solid #DBDBDB;
-              }
-              input:focus {
-                outline: none;
-              }
-            }
-          .submit-btn {
-              @include app-btn;
-              margin-top: 20px;
-          }
-        }
+          }          
     }
 }

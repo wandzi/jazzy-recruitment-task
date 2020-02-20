@@ -24,7 +24,7 @@ class Table extends Component {
         this.toggleModal = this.toggleModal.bind(this);
     }
     componentDidMount() {
-        axios.get(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes?_format=json&limit=130&offset=0`)
+        axios.get(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes?_format=json&limit=100&offset=0`)
         .then((res) => {
             const gnomesList = res.data;
             this.setState({ gnomesList });

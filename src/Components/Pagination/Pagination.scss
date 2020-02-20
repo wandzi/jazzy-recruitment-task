@@ -1,9 +1,8 @@
 @import "../../SCSS/variables.scss";
 @import "../../SCSS/mixins.scss";
 
-
 .pagination-nav {
-    width: initial;
+    width: 40vw;
     margin: 80px auto;
     background-color: $primaryColor;
     border-radius: 20px;
