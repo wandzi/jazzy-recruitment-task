@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import './Table.scss';
 import axios from 'axios';
 import Gnome from '../Gnome/Gnome';
 import Modal from '../Modal/Modal';
-import Pagination from '../Pagination/Pagination';
 
 class Table extends Component {
     constructor() {
         super();
         this.state = {
             gnomesList: [],
+            limit: 15,
+            offset: 15,
 
             isOpen: false,
             modalItemName: '',
@@ -17,21 +19,27 @@ class Table extends Component {
             modalItemId: null,
             modalItemStrength: '',
 
-            currentPage: 1,
-            gnomesPerPage: 8,
-
         }
         this.toggleModal = this.toggleModal.bind(this);
     }
+
     componentDidMount() {
-        axios.get(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes?_format=json&limit=100&offset=0`)
-        .then((res) => {
-            const gnomesList = res.data;
-            this.setState({ gnomesList });
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+        const { limit } = this.state;
+
+        axios.get(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes?_format=json&limit=${limit}&offset=0`)
+            .then(res => this.setState({ gnomesList: res.data }));
+
+    }
+    
+    fetchImages = () => {
+        const { limit, offset } = this.state;
+        
+        this.setState({ offset: limit + offset });
+        axios.get(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes?_format=json&limit=${limit}&offset=${offset}`)
+            .then(res =>
+                this.setState({ gnomesList: this.state.gnomesList.concat(res.data) })
+            );
+
     }
 
     toggleModal = (gnome) => {
@@ -46,34 +54,23 @@ class Table extends Component {
 
     render() {
         const { gnomesList } = this.state;
- 
-        //Get current posts
 
-        const indexOfLastGnome = this.state.currentPage * this.state.gnomesPerPage;
-        const indexOfFirstGnome = indexOfLastGnome - this.state.gnomesPerPage;
-        const currentGnomes = gnomesList.slice(indexOfFirstGnome, indexOfLastGnome);
-
-        // Change page
-
-        const paginate = pageNumber => {
-            this.setState({currentPage: pageNumber});
-        }
-        
         return(
             <div className="container">
                 <div className="table-container">
                     <h1>Gnomes</h1>
+                    <InfiniteScroll
+                        dataLength={this.state.gnomesList.length}
+                        next={this.fetchImages}
+                        hasMore={true}
+                        loader={<h4>Loading...</h4>}
+                    >
                     {
-                        currentGnomes.map( gnome => {
+                        gnomesList.map( gnome => {
                             return <Gnome key={gnome.id} gnome={gnome} clickEvent={() => this.toggleModal(gnome)}/>
                         }) 
                     }
-                    <Pagination 
-                        currentPage={this.state.currentPage}
-                        gnomesPerPage={this.state.gnomesPerPage} 
-                        totalGnomes={gnomesList.length}
-                        paginate={paginate}
-                    />
+                    </InfiniteScroll>
                 </div>
                 <Modal 
                     show={this.state.isOpen} 
@@ -82,7 +79,6 @@ class Table extends Component {
                     gnomeName={this.state.modalItemName}
                     gnomeAge={this.state.modalItemAge}
                     gnomeStrength={this.state.modalItemStrength}
-
                 />
             </div>
         )
