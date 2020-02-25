@@ -5,21 +5,15 @@ import axios from 'axios';
 import Gnome from '../Gnome/Gnome';
 import Modal from '../Modal/Modal';
 
+
 class Table extends Component {
     constructor() {
         super();
         this.state = {
             gnomesList: [],
-            limit: 15,
-            offset: 15,
-
-            isOpen: false,
-            modalItemName: '',
-            modalItemAge: '',
-            modalItemId: null,
-            modalItemStrength: '',
 
         }
+
         this.toggleModal = this.toggleModal.bind(this);
     }
 
@@ -54,7 +48,7 @@ class Table extends Component {
 
     render() {
         const { gnomesList } = this.state;
-
+        
         return(
             <div className="container">
                 <div className="table-container">
