@@ -4,16 +4,16 @@ import StoreContext from './storeContext';
 
 const StoreProvider = ({ children }) => {
     const store = useLocalStore(() => ({
-      gnomes: [],
+        gnomesList: [], 
 
-      limit: 15,
-      offset: 15,
+        limit: 15,
+        offset: 15,
 
-      isOpen: false,
-      modalItemName: '',
-      modalItemAge: '',
-      modalItemId: null,
-      modalItemStrength: '',
+        isOpen: false,
+        modalItemName: '',
+        modalItemAge: '',
+        modalItemId: null,
+        modalItemStrength: '',
 
     }));
     return (

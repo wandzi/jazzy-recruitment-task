@@ -3,13 +3,7 @@ import './Nav.scss';
 import logo from '../../assets/logo.png';
 import thumbnail from '../../assets/avatar.png';
 
-import { toJS } from 'mobx';
-import StoreContext from '../../Mobx/storeContext';
-
 const Nav = () => {
-
-    const store = React.useContext(StoreContext);
-    console.log(toJS(store));
 
     return(
         <nav className='nav'>
