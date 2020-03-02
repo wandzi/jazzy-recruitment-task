@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocalStore } from 'mobx-react';
 import StoreContext from './storeContext';
+import { toJS } from 'mobx';
 
 const StoreProvider = ({ children }) => {
     const store = useLocalStore(() => ({
@@ -14,8 +15,13 @@ const StoreProvider = ({ children }) => {
         modalItemAge: '',
         modalItemId: null,
         modalItemStrength: '',
-
-    }));
+        
+        addGnomes: async (res) => {
+          await store.gnomesList.push(res);
+          console.log(toJS(store.gnomesList));
+        }
+     }));
+     
     return (
       <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
     );

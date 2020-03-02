@@ -12,63 +12,49 @@ import StoreContext from '../../Mobx/storeContext';
 const Table = () => {
     
     useEffect(() => {
-        const { limit } = store;
+        fetchGnomes();
+    });
 
-        axios.get(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes?_format=json&limit=${limit}&offset=0`)
-            .then(res => store.gnomesList = res.data);
-      });
-
-    const fetchImages = () => {
+    const fetchGnomes = async () => {
         const { limit, offset } = store;
         
-        this.setState({ offset: limit + offset });
+        store.offset = limit + offset;
+        console.log(toJS(store));
+
         axios.get(`http://master.datasource.jazzy-hr.jzapp.io/api/v1/gnomes?_format=json&limit=${limit}&offset=${offset}`)
-            .then(res =>
-                store.gnomesList = store.gnomesList.concat(res.data)
-            );
-
+            .then(res =>{
+                store.addGnomes(res.data);
+            });
     }
 
-    const toggleModal = (gnome) => {
-        this.setState({
-            isOpen: !this.state.isOpen,
-            modalItemId: gnome.id,
-            modalItemName: gnome.name,
-            modalItemAge: gnome.age,
-            modalItemStrength: gnome.strenght,
-        });
-    }
+    /*const toggleModal = (gnome) => {
+        store.isOpen = !store.isOpen;
+        store.modalItemId = gnome.id;
+        store.modalItemName = gnome.name;
+        store.modalItemAge = gnome.age;
+        store.modalItemStrength = gnome.strenght;
+    }*/
 
     const store = React.useContext(StoreContext);
-    console.log(toJS(store));
-
-    const { gnomesList } = store;
 
     return(
         <div className="container">
             <div className="table-container">
                 <h1>Gnomes</h1>
                 <InfiniteScroll
-                    dataLength={this.state.gnomesList.length}
-                    next={this.fetchImages}
+                    dataLength={store.gnomesList.length}
+                    next={fetchGnomes()}
                     hasMore={true}
                     loader={<h4>Loading...</h4>}
                 >
                 {
-                    gnomesList.map( gnome => {
+                    store.gnomesList.map( gnome => {
                         return <Gnome key={gnome.id} gnome={gnome} clickEvent={() => this.toggleModal(gnome)}/>
                     }) 
                 }
                 </InfiniteScroll>
             </div>
-            <Modal 
-                show={this.state.isOpen} 
-                onClose={this.toggleModal} 
-                gnomeId={this.state.modalItemId} 
-                gnomeName={this.state.modalItemName}
-                gnomeAge={this.state.modalItemAge}
-                gnomeStrength={this.state.modalItemStrength}
-            />
+            <Modal /*onClose={toggleModal()}*/ />
         </div>
     )
 }
