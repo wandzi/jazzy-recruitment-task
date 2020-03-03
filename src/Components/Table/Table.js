@@ -10,7 +10,7 @@ import StoreContext from '../../Mobx/storeContext';
 
 
 const Table = () => {
-    
+    /*
     useEffect(() => {
         fetchGnomes();
     });
@@ -26,14 +26,16 @@ const Table = () => {
                 store.addGnomes(res.data);
             });
     }
+    */
 
-    /*const toggleModal = (gnome) => {
+    const toggleModal = (gnome) => {
+        console.log(toJS(store));
         store.isOpen = !store.isOpen;
         store.modalItemId = gnome.id;
         store.modalItemName = gnome.name;
         store.modalItemAge = gnome.age;
         store.modalItemStrength = gnome.strenght;
-    }*/
+    }
 
     const store = React.useContext(StoreContext);
 
@@ -41,20 +43,13 @@ const Table = () => {
         <div className="container">
             <div className="table-container">
                 <h1>Gnomes</h1>
-                <InfiniteScroll
-                    dataLength={store.gnomesList.length}
-                    next={fetchGnomes()}
-                    hasMore={true}
-                    loader={<h4>Loading...</h4>}
-                >
                 {
-                    store.gnomesList.map( gnome => {
-                        return <Gnome key={gnome.id} gnome={gnome} clickEvent={() => this.toggleModal(gnome)}/>
+                    toJS(store.gnomesList).map( gnome => {
+                        return <Gnome key={gnome.id} gnome={gnome} clickEvent={() => toggleModal(gnome)}/>
                     }) 
                 }
-                </InfiniteScroll>
             </div>
-            <Modal /*onClose={toggleModal()}*/ />
+            <Modal /*onClose={toggleModal()} *//>
         </div>
     )
 }
